@@ -12,7 +12,7 @@ import {
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import Constants from 'expo-constants';
 import HomeScreen from './screens/HomeScreen';
-import CropSelection1 from './screens/CropSelection1';
+/*import CropSelection1 from './screens/CropSelection1';
 import CropTreatment1 from './screens/CropTreatment1';
 import SoilTest1 from './screens/SoilTest1';
 import SoilTest1_1 from './screens/SoilTest1_1';
@@ -98,7 +98,7 @@ import WinterSilt from './screens/WinterSilt';
 import WinterPeat from './screens/WinterPeat';
 import WinterChalky from './screens/WinterChalky';
 import WinterLoamy from './screens/WinterLoamy';
-import Intro from './screens/Intro';
+import Intro from './screens/Intro';*/
 
 export default function App() {
   return (
@@ -107,9 +107,9 @@ export default function App() {
 }
 
 var AppNavigator = createSwitchNavigator({
-  Intro:Intro,
+  //Intro:Intro,
   HomeScreen: HomeScreen,
-  CropSelection1: CropSelection1,
+  /*CropSelection1: CropSelection1,
   CropTreatment1: CropTreatment1,
   SoilTest1: SoilTest1,
   SoilTest1_1: SoilTest1_1,
@@ -200,7 +200,7 @@ var AppNavigator = createSwitchNavigator({
   WinterSilt: WinterSilt,
   WinterPeat: WinterPeat,
   WinterChalky: WinterChalky,
-  WinterLoamy: WinterLoamy,
+  WinterLoamy: WinterLoamy,*/
 });
 
 const AppContainer = createAppContainer(AppNavigator);
