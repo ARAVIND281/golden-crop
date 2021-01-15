@@ -3,27 +3,33 @@ import {
   Text,
   View,
   StyleSheet,
-  DropdownButton,
+  ScrollView,
   TouchableOpacity,
   Image,
 } from 'react-native';
+import { Header } from 'react-native-elements';
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default class SoilTest7 extends Component {
   render() {
     return (
-      <View>
-        <View style={styles.textContainer}>
-          <Image
-            style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-            source={require('../image.png')}
+      <ScrollView>
+        <View>
+          <Header
+            centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+            rightComponent={<Text style={{
+              fontSize: RFValue(30),
+              fontWeight: 'bold',
+            }}
+              onPress={() => {
+                this.props.navigation.navigate('HomeScreen');
+              }}>🏠</Text>}
+            leftComponent={<Image
+              style={{ height: 50, width: 50 }}
+              source={require('../image.png')}
+            />}
+            backgroundColor="gold"
           />
-          <Text style={styles.text}>GOLDEN CROP</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.home}>🏠</Text>
-          </TouchableOpacity>
         </View>
         <Image
           style={{ width: 300, height: 300, alignSelf: 'center' }}
@@ -32,11 +38,10 @@ export default class SoilTest7 extends Component {
               'https://whitehatjrcontent.s3.ap-south-1.amazonaws.com/loader.gif',
           }}
         />
-        <Text style={{ textAlign: 'center' }}>
-          {' '}
+        <Text style={{ textAlign: 'center', fontSize: 18 }}>
           We did not find any other test go to home and restart SOIL TEST
         </Text>
-      </View>
+      </ScrollView>
     );
   }
 }

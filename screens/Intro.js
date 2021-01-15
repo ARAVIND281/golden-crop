@@ -10,6 +10,8 @@ import {
   ImageBackground,
   ScrollView
 } from 'react-native';
+import { RFValue } from "react-native-responsive-fontsize";
+import { Header } from 'react-native-elements';
 
 export default class Intro extends React.Component {
   render() {
@@ -21,26 +23,22 @@ export default class Intro extends React.Component {
               'https://firebasestorage.googleapis.com/v0/b/inbo-chat-a81c7.appspot.com/o/color%20card.jpg?alt=media&token=b73e7f04-d923-4a63-9252-7c5627bd3213',
           }}
           style={styles.image}>
-          <View style={styles.textContainer}>
-            <Image
-              style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-              source={require('../image.png')}
-            />
-            <Text style={styles.text}>GOLDEN CROP</Text>
-
-            <Image
-              style={{ height: 70, width: 300, marginTop: -75, alignSelf: 'center' }}
-              source={{
-                uri:
-                  'https://78.media.tumblr.com/63273c0fd6d464bb267d638e584ec8a7/tumblr_p1wli7n7021vpf6ddo1_500.gif',
+          <View>
+            <Header
+              centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+              rightComponent={<Text style={{
+                fontSize: RFValue(30),
+                fontWeight: 'bold',
               }}
+                onPress={() => {
+                  this.props.navigation.navigate('HomeScreen');
+                }}>🏠</Text>}
+              leftComponent={<Image
+                style={{ height: 50, width: 50 }}
+                source={require('../image.png')}
+              />}
+              backgroundColor="gold"
             />
-            <TouchableOpacity
-              onPress={() => {
-                this.props.navigation.navigate('HomeScreen');
-              }}>
-              <Text style={styles.home}>🏠</Text>
-            </TouchableOpacity>
           </View>
           <TypeWriter typing={1} style={styles.textmain}>
             Farmers are the backbone of our society. They play a pivotal role in

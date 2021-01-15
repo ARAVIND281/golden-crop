@@ -3,29 +3,36 @@ import {
   Text,
   View,
   StyleSheet,
-  DropdownButton,
   TouchableOpacity,
-  Image,
+  Image,ScrollView
 } from 'react-native';
+import { Header } from 'react-native-elements';
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default class SugarcaneL1_1 extends Component {
   render() {
     return (
-      <View style={styles.background}>
-        <View style={styles.textContainer}>
-          <Image
-            style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-            source={require('../image.png')}
+      <ScrollView style={styles.background}>
+        <View>
+          <Header
+            centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+            rightComponent={<Text style={{
+              fontSize: RFValue(30),
+              fontWeight: 'bold',
+            }}
+              onPress={() => {
+                this.props.navigation.navigate('HomeScreen');
+              }}>🏠</Text>}
+            leftComponent={<Image
+              style={{ height: 50, width: 50 }}
+              source={require('../image.png')}
+            />}
+            backgroundColor="gold"
           />
-          <Text style={styles.text}>GOLDEN CROP</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.home}>🏠</Text>
-          </TouchableOpacity>
         </View>
+        <View style={{ marginTop: 10 }}></View>
         <Text style={styles.headText}>Rust</Text>
+        <View style={{ marginTop: 20 }}></View>
         <Image
           style={{ width: 150, height: 150, alignSelf: 'center' }}
           source={{
@@ -33,45 +40,46 @@ export default class SugarcaneL1_1 extends Component {
               'http://agritech.tnau.ac.in/crop_protection/images/sugarcane_diseases/3.2.jpg',
           }}
         />
+        <View style={{ marginTop: 20 }}></View>
         <Text
           style={{
             textAlign: 'left',
             marginTop: 10,
             marginLeft: 25,
             marginRight: 25,
-            fontFamily: 'Lucida Calligraphy',
+            fontSize: 20,
             fontWeight: 'bold',
             color: 'white',
           }}>
           TREATEMENT
         </Text>
+        <View style={{ marginTop: 20 }}></View>
         <Text style={styles.bodyText}>
           Spray Tridemorph 1.0 litres or Mancozeb 2.0 kg/ha. Use dithane M 45 @
           2 g/lit for one spraying.
         </Text>
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#00ff00',
-    height: '100%',
+    backgroundColor: '#98EDC3',
+    height: '130%',
   },
   headText: {
     textAlign: 'center',
     color: 'red',
-    fontSize: 20,
+    fontSize: 23,
     fontWeight: 'bold',
-    fontFamily: 'Castellar',
   },
   bodyText: {
     marginLeft: 25,
     marginRight: 25,
     textAlign: 'justify',
-    fontFamily: 'Lucida Calligraphy',
     fontWeight: 'bold',
+    fontSize: 19,
   },
   textContainer: {
     backgroundColor: 'gold',

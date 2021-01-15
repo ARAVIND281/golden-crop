@@ -3,10 +3,12 @@ import {
   Text,
   View,
   StyleSheet,
-  DropdownButton,
   TouchableOpacity,
   Image,
+  ScrollView
 } from 'react-native';
+import { Header } from 'react-native-elements';
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default class SugarcaneS1 extends Component {
   changeScreen1 = () => {
@@ -19,21 +21,27 @@ export default class SugarcaneS1 extends Component {
 
   render() {
     return (
-      <View style={styles.background}>
-        <View style={styles.textContainer}>
-          <Image
-            style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-            source={require('../image.png')}
+      <ScrollView style={styles.background}>
+        <View>
+          <Header
+            centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+            rightComponent={<Text style={{
+              fontSize: RFValue(30),
+              fontWeight: 'bold',
+            }}
+              onPress={() => {
+                this.props.navigation.navigate('HomeScreen');
+              }}>🏠</Text>}
+            leftComponent={<Image
+              style={{ height: 50, width: 50 }}
+              source={require('../image.png')}
+            />}
+            backgroundColor="gold"
           />
-          <Text style={styles.text}>GOLDEN CROP</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.home}>🏠</Text>
-          </TouchableOpacity>
         </View>
+        <View style={{ marginTop: 10 }}></View>
         <Text style={styles.headText}>Red rot </Text>
+        <View style={{ marginTop: 20 }}></View>
         <Image
           style={{ width: 150, height: 150, alignSelf: 'center' }}
           source={{
@@ -41,21 +49,21 @@ export default class SugarcaneS1 extends Component {
               'http://agritech.tnau.ac.in/crop_protection/images/sugarcane_diseases/4.3.jpg',
           }}
         />
+        <View style={{ marginTop: 20 }}></View>
         <Text style={styles.bodyText}>
           When the affected cane is split opened,do you find reddish colour in
           the inner region with intermittent white tinges across the cane
           length. The external symptoms appear only after16 - 21 days after
           infection and drying of entire cane takes another 10 days time.
         </Text>
-        <form>
-          <TouchableOpacity style={styles.yes} onPress={this.changeScreen2}>
-            <Text style={styles.nextText}>YES</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.no} onPress={this.changeScreen1}>
-            <Text style={styles.nextText}>NO</Text>
-          </TouchableOpacity>
-        </form>
-      </View>
+        <View style={{ marginTop: 40 }}></View>
+        <TouchableOpacity style={styles.yes} onPress={this.changeScreen2}>
+          <Text style={styles.nextText}>YES</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.no} onPress={this.changeScreen1}>
+          <Text style={styles.nextText}>NO</Text>
+        </TouchableOpacity>
+      </ScrollView>
     );
   }
 }
@@ -67,8 +75,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 80,
     alignSelf: 'center',
-    marginLeft: 80,
-    marginTop: 15,
+    marginLeft: -80,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 10.32,
+    elevation: 16,
   },
   no: {
     backgroundColor: 'red',
@@ -77,29 +92,36 @@ const styles = StyleSheet.create({
     width: 80,
     alignSelf: 'center',
     marginTop: -40,
-    marginLeft: 175,
+    marginLeft: 120,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 10.32,
+    elevation: 16,
   },
   nextText: {
     textAlign: 'center',
     fontSize: 23,
   },
   background: {
-    backgroundColor: '#00ff00',
-    height: '100%',
+    backgroundColor: '#98EDC3',
+    flex: 1
   },
   headText: {
     textAlign: 'center',
-    color: 'red',
-    fontSize: 20,
+    color: 'blue',
+    fontSize: 23,
     fontWeight: 'bold',
-    fontFamily: 'Castellar',
   },
   bodyText: {
     marginLeft: 25,
     marginRight: 25,
     textAlign: 'justify',
-    fontFamily: 'Lucida Calligraphy',
     fontWeight: 'bold',
+    fontSize: 19,
   },
   textContainer: {
     backgroundColor: 'gold',

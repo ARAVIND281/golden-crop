@@ -3,12 +3,13 @@ import {
   Text,
   View,
   StyleSheet,
-  DropdownButton,
   TouchableOpacity,
   Image,
+  Picker,
+  ScrollView
 } from 'react-native';
-import Select from 'react-select';
-import NumInput from 'react-numeric-input';
+import { RFValue } from "react-native-responsive-fontsize";
+import { Header, ButtonGroup } from 'react-native-elements';
 
 export default class CropSelection1 extends Component {
   constructor() {
@@ -17,20 +18,68 @@ export default class CropSelection1 extends Component {
       SelectedSoiltype: null,
       SelectedSeasontype: null,
       o: 0,
+      soilType: null,
+      selectedSeason: null,
+      selectedSeasonName: null,
+      color: null,
+      Druation: 0,
+      selectedIndex: null,
+      druationColor: null,
     };
-    this.onValueChange1 = this.onValueChange1.bind(this);
-    this.onValueChange2 = this.onValueChange2.bind(this);
-  }
-  onValueChange1(event) {
-    this.setState({
-      SelectedSoiltype: event.target.value,
-    });
+    this.updateDruation = this.updateDruation.bind(this)
+    this.updateIndex = this.updateIndex.bind(this)
   }
 
-  onValueChange2(event) {
-    this.setState({
-      SelectedSeasontype: event.target.value,
-    });
+  updateIndex(selectedSeason) {
+    this.setState({ selectedSeason })
+    if (selectedSeason == 0) {
+      this.setState({
+        selectedSeasonName: 'Summer',
+        color: 'orange',
+        SelectedSeasontype:'Summer'
+      })
+    }
+    if (selectedSeason == 1) {
+      this.setState({
+        selectedSeasonName: 'Spring',
+        color: '#41980A',
+        SelectedSeasontype:'Spring'
+      })
+    }
+    if (selectedSeason == 2) {
+      this.setState({
+        selectedSeasonName: 'Winter',
+        color: 'skyblue',
+        SelectedSeasontype:'Winter'
+      })
+    }
+  }
+
+  updateDruation(selectedIndex) {
+    this.setState({ selectedIndex })
+    if (selectedIndex == 0) {
+      this.setState({
+        druationColor: 'red'
+      })
+      if (this.state.Druation >= 1) {
+        this.setState({
+          Druation: this.state.Druation - 1,
+        })
+      }
+    }
+    if (selectedIndex == 1) {
+      this.setState({
+        Druation: 0,
+        druationColor: '#fff',
+        selectedIndex: null
+      })
+    }
+    if (selectedIndex == 2) {
+      this.setState({
+        Druation: this.state.Druation + 1,
+        druationColor: 'green'
+      })
+    }
   }
 
   nextScreen = () => {
@@ -131,169 +180,107 @@ export default class CropSelection1 extends Component {
 
   render() {
     const { o } = this.state;
+    var druation = this.state.Druation
+    const { selectedIndex } = this.state
+    const { selectedSeason } = this.state
     return (
-      <View style={{ backgroundColor: '#f0dc82' }}>
-        <View style={styles.textContainer}>
-          <Image
-            style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-            source={require('../image.png')}
+      <ScrollView style={{ backgroundColor: '#f0dc82', flex: 1 }}>
+        <View>
+          <Header
+            centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+            rightComponent={<Text style={{
+              fontSize: RFValue(30),
+              fontWeight: 'bold',
+            }}
+              onPress={() => {
+                this.props.navigation.navigate('HomeScreen');
+              }}>🏠</Text>}
+            leftComponent={<Image
+              style={{ height: 50, width: 50 }}
+              source={require('../image.png')}
+            />}
+            backgroundColor="gold"
           />
-          <Text style={styles.text}>GOLDEN CROP</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.home}>🏠</Text>
-          </TouchableOpacity>
         </View>
-        <View style={styles.soilType}>
+        <View style={[styles.soilType,{width:'30%'}]}>
           <Text style={styles.type}> SOIL TYPE</Text>
         </View>
         <View style={styles.soilType1}>
-          <form>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  value="Clay Soil"
-                  checked={this.state.SelectedSoiltype === 'Clay Soil'}
-                  onChange={this.onValueChange1}
-                />
-                Clay Soil
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  value="Sandy Soil"
-                  checked={this.state.SelectedSoiltype === 'Sandy Soil'}
-                  onChange={this.onValueChange1}
-                />
-                Sandy Soil
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  value="Silt Soil"
-                  checked={this.state.SelectedSoiltype === 'Silt Soil'}
-                  onChange={this.onValueChange1}
-                />
-                Silt Soil
-              </label>
-              <br />
-              <label>
-                <input
-                  type="radio"
-                  value="Peat Soil"
-                  checked={this.state.SelectedSoiltype === 'Peat Soil'}
-                  onChange={this.onValueChange1}
-                />
-                Peat Soil
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  value="Chalky Soil"
-                  checked={this.state.SelectedSoiltype === 'Chalky Soil'}
-                  onChange={this.onValueChange1}
-                />
-                Chalky Soil
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  value="Loamy Soil"
-                  checked={this.state.SelectedSoiltype === 'Loamy Soil'}
-                  onChange={this.onValueChange1}
-                />
-                Loamy Soil
-              </label>
-            </div>
-          </form>
+          <View style={styles.Picker}>
+            <Picker
+              selectedValue={this.state.SelectedSoiltype}
+              style={{ height: RFValue(50), width: RFValue(250) }}
+              onValueChange={(itemValue, itemIndex) => { this.setState({ SelectedSoiltype: itemValue }) }}
+            >
+              <Picker.Item label="SELECT SOIL TYPE" value="SELECT SOIL TYPE" />
+              <Picker.Item label="Clay Soil" value="Clay Soil" />
+              <Picker.Item label="Sandy Soil" value="Sandy Soil" />
+              <Picker.Item label="Silt Soil" value="Silt Soil" />
+              <Picker.Item label="Peat Soil" value="Peat Soil" />
+              <Picker.Item label="Chalky Soil" value="Chalky Soil" />
+              <Picker.Item label="Loamy Soil" value="Loamy Soil" />
+            </Picker>
+          </View>
         </View>
-        <View style={styles.season1}>
+        <View style={{ marginTop: '10%' }}></View>
+        <View style={[styles.season1,{width:'25%'}]}>
           <Text style={styles.type}> SEASON</Text>
         </View>
-        <View style={styles.season}>
-          <form>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  value="Summer"
-                  checked={this.state.SelectedSeasontype === 'Summer'}
-                  onChange={this.onValueChange2}
-                />
-                Summer
-              </label>
+        <View style={{ marginLeft: RFValue(10) }}>
+          <ButtonGroup
+            onPress={this.updateIndex}
+            selectedIndex={selectedSeason}
+            buttons={['Summer', 'Spring', 'Winter']}
+            containerStyle={{ height: RFValue(50), borderRadius: RFValue(10) }}
+            selectedButtonStyle={{ backgroundColor: this.state.color }}
+          />
+        </View>
+        <View style={[styles.druation1,{width:'50%'}]}>
+          <Text style={styles.type}> {'DURATION(Month)'}</Text>
+        </View>
+        <View style={{ marginLeft: RFValue(10) }}>
+          <ButtonGroup
+            onPress={this.updateDruation}
+            buttons={['-', druation, '+']}
+            selectedIndex={selectedIndex}
+            containerStyle={{ height: RFValue(50), borderRadius: RFValue(10), width: '60%' }}
+            selectedButtonStyle={{ backgroundColor: this.state.druationColor }}
+          />
+        </View>
+        <View style={{ marginTop: '10%' }}></View>
 
-              <label>
-                <input
-                  type="radio"
-                  value="Spring"
-                  checked={this.state.SelectedSeasontype === 'Spring'}
-                  onChange={this.onValueChange2}
-                />
-                Spring
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  value="Winter"
-                  checked={this.state.SelectedSeasontype === 'Winter'}
-                  onChange={this.onValueChange2}
-                />
-                Winter
-              </label>
-            </div>
-          </form>
+        <View style={{ marginTop: 10 }}>
+          <Text style={{ fontWeight: 'bold', fontSize: RFValue(16.5) }}>Your Soil Type is {this.state.SelectedSoiltype}</Text>
         </View>
-        <View style={styles.druation1}>
-          <Text style={styles.type}> DURATION</Text>
+        <View style={{ marginTop: 10 }}>
+          <Text style={{ fontWeight: 'bold', fontSize: RFValue(16.5) }}>Your Season is {this.state.SelectedSeasontype}</Text>
         </View>
-        <View style={styles.druation}>
-          <form>
-            <NumInput
-              style={{ width: 100 }}
-              format={(o) => `${o}`}
-              value={o}
-              onChange={this.updateO}
-              max="18"
-              min="0"
-            />
-            <Text>MONTH</Text>
-          </form>
-        </View>
-        <View style={styles.waterLevel}>
-          <form>
-            <Text>WATER LEVEL:</Text>
-
-            <select id="dropdown" value={this.state.waterLevel}>
-              <option value="SELECTCROP" disabled="true">
-                -- SELECT SOIL TYPE --
-              </option>
-              <option value="High ">High</option>
-              <option value="Medium ">Medium</option>
-              <option value="Low">Low</option>
-            </select>
-          </form>
-        </View>
-        <div style={{ marginTop: 10 }}>
-          Your Soil Type is {this.state.SelectedSoiltype}
-        </div>
-        <div style={{ marginTop: 10 }}>
-          Your SEASON is {this.state.SelectedSeasontype}
-        </div>
-        <View>
-          <TouchableOpacity style={styles.next} onPress={this.nextScreen}>
-            <Text style={styles.nextText}>NEXT</Text>
+        <View style={{ marginTop: '15%' }}>
+          <TouchableOpacity style={[styles.next, {
+            width: "50%",
+            height: RFValue(50),
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: RFValue(25),
+            backgroundColor: "#ffff",
+            shadowColor: "#000",
+            marginBottom: RFValue(10),
+            shadowOffset: {
+              width: 0,
+              height: 8,
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: 10.32,
+            elevation: 16,
+          }]} onPress={this.nextScreen}>
+            <Text style={[styles.nextText, {
+              color: "#028910",
+              fontWeight: "bold",
+              fontSize: RFValue(30),
+            }]}>NEXT</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -318,7 +305,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     backgroundColor: '#B91372',
     marginRight: '70%',
-    width: 85,
+    width: 130,
   },
   soilType1: {
     alignSelf: 'flex-start',
@@ -339,17 +326,11 @@ const styles = StyleSheet.create({
   },
   next: {
     backgroundColor: 'red',
-    height: 20,
-    borderRadius: 10,
-    marginTop: '10%',
     width: 80,
     alignSelf: 'center',
     marginBottom: 10,
   },
   nextText: {
-    textAlign: 'center',
-    fontSize: 15,
-    fontWeight: 'bold',
   },
   textContainer: {
     backgroundColor: 'gold',
@@ -370,5 +351,46 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginTop: -75,
   },
+  Picker: {
+    backgroundColor: '#fff',
+    marginTop: RFValue(10),
+    height: RFValue(50),
+    width: RFValue(250),
+    borderRadius: RFValue(10),
+  },
   type: { color: '#ffffff', fontWeight: 'bold' },
 });
+/*
+<View style={styles.druation}>
+          <NumInput
+            style={{ width: 100 }}
+            format={(o) => `${o}`}
+            value={o}
+            onChange={this.updateO}
+            max="18"
+            min="0"
+          />
+          <Text>MONTH</Text>
+        </View>
+
+        <View style={styles.waterLevel}>
+          <Text>WATER LEVEL:</Text>
+
+          <select id="dropdown" value={this.state.waterLevel}>
+            <option value="SELECTCROP" disabled="true">
+              -- SELECT SOIL TYPE --
+              </option>
+            <option value="High ">High</option>
+            <option value="Medium ">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </View>*/
+/*
+<ButtonGroup
+    onPress={this.updateDruation}
+    buttons={['-', druation, '+']}
+    selectedIndex={selectedIndex}
+    containerStyle={{ height: RFValue(50), borderRadius: RFValue(10), width: '60%' }}
+    selectedButtonStyle={{ backgroundColor: this.state.druationColor }}
+  />
+*/

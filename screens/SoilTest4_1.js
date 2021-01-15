@@ -5,26 +5,33 @@ import {
   StyleSheet,
   DropdownButton,
   TouchableOpacity,
-  Image,
+  Image,ScrollView
 } from 'react-native';
+import { Header } from 'react-native-elements';
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default class SoilTest4_1 extends Component {
   render() {
     return (
-      <View style={{ backgroundColor: '#d3d3d3' }}>
-        <View style={styles.textContainer}>
-          <Image
-            style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-            source={require('../image.png')}
+      <ScrollView style={{ backgroundColor: '#d3d3d3', flex: 1 }}>
+        <View>
+          <Header
+            centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+            rightComponent={<Text style={{
+              fontSize: RFValue(30),
+              fontWeight: 'bold',
+            }}
+              onPress={() => {
+                this.props.navigation.navigate('HomeScreen');
+              }}>🏠</Text>}
+            leftComponent={<Image
+              style={{ height: 50, width: 50 }}
+              source={require('../image.png')}
+            />}
+            backgroundColor="gold"
           />
-          <Text style={styles.text}>GOLDEN CROP</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.home}>🏠</Text>
-          </TouchableOpacity>
         </View>
+        <View style={{ marginTop: 20 }} />
         <Text
           style={{
             textAlign: 'center',
@@ -34,6 +41,7 @@ export default class SoilTest4_1 extends Component {
           }}>
           Test Result
         </Text>
+        <View style={{ marginTop: 20 }} />
         <Image
           style={{ width: 150, height: 150, alignSelf: 'center' }}
           source={{
@@ -41,18 +49,21 @@ export default class SoilTest4_1 extends Component {
               'https://gardenerspath.com/wp-content/uploads/2017/07/Some-Say-Peat-Moss-is-Indispensable.jpg',
           }}
         />
-        <Text style={{ textAlign: 'center' }}>Your soil is Peat Soil</Text>
+        <View style={{ marginTop: 20 }} />
+        <Text style={{ textAlign: 'center', fontSize: 18, fontWeight: 'bold' }}>Your soil is Peat Soil</Text>
+        <View style={{ marginTop: 20 }} />
         <Text
           style={{
             marginLeft: 25,
             marginRight: 25,
             textAlign: 'justify',
+            fontSize: 18,
           }}>
           Peat soil is great for growth when blended with rich organic matter,
           compost and lime to reduce the acidity. You can also use soil
           amendments such as glacial rock dust to raise pH in acidic soils.
         </Text>
-      </View>
+      </ScrollView>
     );
   }
 }

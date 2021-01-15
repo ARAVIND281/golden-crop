@@ -10,23 +10,40 @@ import {
 } from 'react-native';
 
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-import Constants from 'expo-constants';
 import HomeScreen from './screens/HomeScreen';
 import CropSelection1 from './screens/CropSelection1';
-import CropTreatment1 from './screens/CropTreatment1';
+import SummerClay from './screens/SummerClay';
+import SummerChalky from './screens/SummerChalky';
+import SummerLoamy from './screens/SummerLoamy';
+import SummerPeat from './screens/SummerPeat';
+import SummerSandy from './screens/SummerSandy';
+import SummerSilt from './screens/SummerSilt';
+import WinterChalky from './screens/WinterChalky';
+import WinterLoamy from './screens/WinterLoamy';
+import WinterClay from './screens/WinterClay';
+import WinterPeat from './screens/WinterPeat';
+import WinterSandy from './screens/WinterSandy';
+import WinterSilt from './screens/WinterSilt';
+import MonsoonChalky from './screens/MonsoonChalky';
+import MonsoonClay from './screens/MonsoonClay';
+import MonsoonLoamy from './screens/MonsoonLoamy';
+import MonsoonPeat from './screens/MonsoonPeat';
+import MonsoonSandy from './screens/MonsoonSandy';
+import MonsoonSilt from './screens/MonsoonSilt';
 import SoilTest1 from './screens/SoilTest1';
-import SoilTest1_1 from './screens/SoilTest1_1';
 import SoilTest2 from './screens/SoilTest2';
-import SoilTest2_1 from './screens/SoilTest2_1';
 import SoilTest3 from './screens/SoilTest3';
-import SoilTest3_1 from './screens/SoilTest3_1';
 import SoilTest4 from './screens/SoilTest4';
-import SoilTest4_1 from './screens/SoilTest4_1';
 import SoilTest5 from './screens/SoilTest5';
-import SoilTest5_1 from './screens/SoilTest5_1';
 import SoilTest6 from './screens/SoilTest6';
 import SoilTest7 from './screens/SoilTest7';
+import SoilTest1_1 from './screens/SoilTest1_1';
+import SoilTest2_1 from './screens/SoilTest2_1';
+import SoilTest3_1 from './screens/SoilTest3_1';
+import SoilTest4_1 from './screens/SoilTest4_1';
+import SoilTest5_1 from './screens/SoilTest5_1';
 import SoilTest6_1 from './screens/SoilTest6_1';
+import CropTreatment1 from './screens/CropTreatment1';
 import Leaf1 from './screens/Leaf1';
 import Leaf1_1 from './screens/Leaf1_1';
 import Leaf3 from './screens/Leaf3';
@@ -80,24 +97,7 @@ import SugarcaneS1_1 from './screens/SugarcaneS1_1';
 import SugarcaneS2 from './screens/SugarcaneS2';
 import SugarcaneS2_1 from './screens/SugarcaneS2_1';
 import CropTreatmentNo from './screens/CropTreatmentNo';
-import SummerClay from './screens/SummerClay';
-import SummerSandy from './screens/SummerSandy';
-import SummerSilt from './screens/SummerSilt';
-import SummerPeat from './screens/SummerPeat';
-import SummerChalky from './screens/SummerChalky';
-import SummerLoamy from './screens/SummerLoamy';
-import MonsoonClay from './screens/MonsoonClay';
-import MonsoonSandy from './screens/MonsoonSandy';
-import MonsoonSilt from './screens/MonsoonSilt';
-import MonsoonPeat from './screens/MonsoonPeat';
-import MonsoonChalky from './screens/MonsoonChalky';
-import MonsoonLoamy from './screens/MonsoonLoamy';
-import WinterClay from './screens/WinterClay';
-import WinterSandy from './screens/WinterSandy';
-import WinterSilt from './screens/WinterSilt';
-import WinterPeat from './screens/WinterPeat';
-import WinterChalky from './screens/WinterChalky';
-import WinterLoamy from './screens/WinterLoamy';
+
 import Intro from './screens/Intro';
 
 export default function App() {
@@ -107,23 +107,41 @@ export default function App() {
 }
 
 var AppNavigator = createSwitchNavigator({
-  Intro:Intro,
+  Intro: Intro,
   HomeScreen: HomeScreen,
   CropSelection1: CropSelection1,
-  CropTreatment1: CropTreatment1,
+  SummerClay: SummerClay,
+  SummerChalky: SummerChalky,
+  SummerLoamy: SummerLoamy,
+  SummerPeat: SummerPeat,
+  SummerSandy: SummerSandy,
+  SummerSilt: SummerSilt,
+  WinterChalky: WinterChalky,
+  WinterClay: WinterClay,
+  WinterLoamy: WinterLoamy,
+  WinterPeat: WinterPeat,
+  WinterSandy: WinterSandy,
+  WinterSilt: WinterSilt,
+  MonsoonChalky: MonsoonChalky,
+  MonsoonClay: MonsoonClay,
+  MonsoonLoamy: MonsoonLoamy,
+  MonsoonPeat: MonsoonPeat,
+  MonsoonSandy: MonsoonSandy,
+  MonsoonSilt: MonsoonSilt,
   SoilTest1: SoilTest1,
-  SoilTest1_1: SoilTest1_1,
   SoilTest2: SoilTest2,
-  SoilTest2_1: SoilTest2_1,
   SoilTest3: SoilTest3,
-  SoilTest3_1: SoilTest3_1,
   SoilTest4: SoilTest4,
-  SoilTest4_1: SoilTest4_1,
   SoilTest5: SoilTest5,
-  SoilTest5_1: SoilTest5_1,
   SoilTest6: SoilTest6,
-  SoilTest6_1: SoilTest6_1,
   SoilTest7: SoilTest7,
+  SoilTest1_1: SoilTest1_1,
+  SoilTest2_1: SoilTest2_1,
+  SoilTest3_1: SoilTest3_1,
+  SoilTest4_1: SoilTest4_1,
+  SoilTest5_1: SoilTest5_1,
+  SoilTest6_1: SoilTest6_1,
+  CropTreatment1: CropTreatment1,
   Leaf1: Leaf1,
   Leaf1_1: Leaf1_1,
   Leaf3: Leaf3,
@@ -183,24 +201,6 @@ var AppNavigator = createSwitchNavigator({
   SugarcaneS2: SugarcaneS2,
   SugarcaneS2_1: SugarcaneS2_1,
   CropTreatmentNo: CropTreatmentNo,
-  SummerClay: SummerClay,
-  SummerSandy: SummerSandy,
-  SummerSilt: SummerSilt,
-  SummerPeat: SummerPeat,
-  SummerChalky: SummerChalky,
-  SummerLoamy: SummerLoamy,
-  MonsoonClay: MonsoonClay,
-  MonsoonSandy: MonsoonSandy,
-  MonsoonSilt: MonsoonSilt,
-  MonsoonPeat: MonsoonPeat,
-  MonsoonChalky: MonsoonChalky,
-  MonsoonLoamy: MonsoonLoamy,
-  WinterClay: WinterClay,
-  WinterSandy: WinterSandy,
-  WinterSilt: WinterSilt,
-  WinterPeat: WinterPeat,
-  WinterChalky: WinterChalky,
-  WinterLoamy: WinterLoamy,
 });
 
 const AppContainer = createAppContainer(AppNavigator);

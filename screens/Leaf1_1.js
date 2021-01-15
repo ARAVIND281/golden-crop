@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { Header } from 'react-native-elements';
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default class Leaf1_1 extends Component {
   changeScreen1 = () => {
@@ -8,21 +10,27 @@ export default class Leaf1_1 extends Component {
 
   render() {
     return (
-      <View style={styles.background}>
-        <View style={styles.textContainer}>
-          <Image
-            style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-            source={require('../image.png')}
+      <ScrollView style={styles.background}>
+        <View>
+          <Header
+            centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+            rightComponent={<Text style={{
+              fontSize: RFValue(30),
+              fontWeight: 'bold',
+            }}
+              onPress={() => {
+                this.props.navigation.navigate('HomeScreen');
+              }}>🏠</Text>}
+            leftComponent={<Image
+              style={{ height: 50, width: 50 }}
+              source={require('../image.png')}
+            />}
+            backgroundColor="gold"
           />
-          <Text style={styles.text}>GOLDEN CROP</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.home}>🏠</Text>
-          </TouchableOpacity>
         </View>
+        <View style={{ marginTop: 10 }}></View>
         <Text style={styles.headText}>CHLOROSIS</Text>
+        <View style={{ marginTop: 20 }}></View>
         <Image
           style={{ width: 150, height: 150, alignSelf: 'center' }}
           source={{
@@ -30,24 +38,20 @@ export default class Leaf1_1 extends Component {
               'https://upload.wikimedia.org/wikipedia/commons/e/ee/Sweetgum-leaf-interveinal-chlorosis.jpg',
           }}
         />
-        <Text style={styles.bodyText}>
-          The first indication of chlorosis is a paling of the green color of
-          the foliage, followed later in the season by a general yellowing. In
-          mild cases, the leaf tissue is pale green, but leaf veins remain
-          green.
-        </Text>
+        <View style={{ marginTop: 20 }}></View>
         <Text
           style={{
             textAlign: 'left',
             marginTop: 10,
             marginLeft: 25,
             marginRight: 25,
-            fontFamily: 'Lucida Calligraphy',
             fontWeight: 'bold',
             color: 'white',
+            fontSize: 20
           }}>
           TREATEMENT
         </Text>
+        <View style={{ marginTop: 20 }}></View>
         <Text style={styles.bodyText}>
           Soil fertilization treatments produce the best results, but are
           usually the slowest to respond. Soil treatment is best done in early
@@ -59,29 +63,28 @@ export default class Leaf1_1 extends Component {
           woodchips). This will help to create more favorable soil conditions
           for roots to grow.
         </Text>
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#00ff00',
+    backgroundColor: '#98EDC3',
     height: '130%',
   },
   headText: {
     textAlign: 'center',
     color: 'red',
-    fontSize: 20,
+    fontSize: 23,
     fontWeight: 'bold',
-    fontFamily: 'Castellar',
   },
   bodyText: {
     marginLeft: 25,
     marginRight: 25,
     textAlign: 'justify',
-    fontFamily: 'Lucida Calligraphy',
     fontWeight: 'bold',
+    fontSize: 19,
   },
   textContainer: {
     backgroundColor: 'gold',

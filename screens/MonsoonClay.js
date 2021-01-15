@@ -1,89 +1,50 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import Blink from 'react-blink-text';
+import { Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+import { RFValue } from "react-native-responsive-fontsize";
+import { Header } from 'react-native-elements';
 
 export default class MonsoonClay extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tableData: [
+        ['Snap Bean', '50 to 60 days'],
+        ['Lettuce', '45 to 55 days'],
+        ['Brussels', '26 to 31 weeks'],
+        ['Cabbage', '80 to 180 days'],
+        ['Pumpkins', '95 to 120 days']
+      ]
+    }
+  }
   render() {
     return (
-      <View style={{ backgroundColor: '#FFE2CF', height: '200%' }}>
-        <View style={styles.textContainer}>
-          <Image
-            style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-            source={require('../image.png')}
+      <View style={{ backgroundColor: '#FFE2CF', height: '300%' }}>
+        <View>
+          <Header
+            centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+            rightComponent={<Text style={{
+              fontSize: RFValue(30),
+              fontWeight: 'bold',
+            }}
+              onPress={() => {
+                this.props.navigation.navigate('HomeScreen');
+              }}>🏠</Text>}
+            leftComponent={<Image
+              style={{ height: 50, width: 50 }}
+              source={require('../image.png')}
+            />}
+            backgroundColor="gold"
           />
-          <Text style={styles.text}>GOLDEN CROP</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.home}>🏠</Text>
-          </TouchableOpacity>
         </View>
-        <Blink
-          color="blue"
-          text="CROP FOR YOUR SOIL"
-          fontSize="100"
-          textAlign="center"
-          fontWeight="bold">
-          CROP FOR YOUR SOIL
-        </Blink>
-        <table>
-          <thead>
-            <tr>
-              <th>Plant Name</th>
-              <th>Duration</th>
-            </tr>
-          </thead>
-        </table>
-        <View style={{ backgroundColor: 'lightgreen', marginTop: 5 }}>
-          <table>
-            <thead>
-              <tr>
-                <th>Snap Bean</th>
-                <th>50 to 60 days</th>
-              </tr>
-            </thead>
-          </table>
-        </View>
-        <View style={{ backgroundColor: 'skyblue' }}>
-          <table>
-            <thead>
-              <tr>
-                <th>Lettuce</th>
-                <th>45 to 55 days</th>
-              </tr>
-            </thead>
-          </table>
-        </View>
-        <View style={{ backgroundColor: 'yellow' }}>
-          <table>
-            <thead>
-              <tr>
-                <th>Brussels</th>
-                <th>26 to 31 weeks</th>
-              </tr>
-            </thead>
-          </table>
-        </View>
-        <View style={{ backgroundColor: 'lightgreen' }}>
-          <table>
-            <thead>
-              <tr>
-                <th>Cabbage</th>
-                <th>80 to 180 days</th>
-              </tr>
-            </thead>
-          </table>
-        </View>
-        <View style={{ backgroundColor: 'skyblue' }}>
-          <table>
-            <thead>
-              <tr>
-                <th>Pumpkins</th>
-                <th>95 to 120 days</th>
-              </tr>
-            </thead>
-          </table>
+        <Text style={{ color: 'blue', textAlign: 'center', fontWeight: 'bold', fontSize: RFValue(20), marginTop: RFValue(20) }}>CROP FOR YOUR SOIL</Text>
+        <View style={{ marginTop: RFValue(20) }}>
+          <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
+            <Row data={['Plant Name', 'Duration']} style={styles.head} textStyle={[styles.text1, { color: 'red', fontSize: RFValue(20) }]} />
+            <Rows data={this.state.tableData}
+              textStyle={styles.text1}
+            />
+          </Table>
         </View>
       </View>
     );
@@ -110,4 +71,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginTop: -75,
   },
+  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+  head: { height: 40, backgroundColor: '#f1f8ff' },
+  text1: { margin: 6, fontWeight: 'bold', fontSize: RFValue(18) }
 });

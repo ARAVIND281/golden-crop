@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { Header } from 'react-native-elements';
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default class Leaf6_1 extends Component {
   render() {
     return (
-      <View style={styles.background}>
-        <View style={styles.textContainer}>
-          <Image
-            style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-            source={require('../image.png')}
+      <ScrollView style={styles.background}>
+        <View>
+          <Header
+            centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+            rightComponent={<Text style={{
+              fontSize: RFValue(30),
+              fontWeight: 'bold',
+            }}
+              onPress={() => {
+                this.props.navigation.navigate('HomeScreen');
+              }}>🏠</Text>}
+            leftComponent={<Image
+              style={{ height: 50, width: 50 }}
+              source={require('../image.png')}
+            />}
+            backgroundColor="gold"
           />
-          <Text style={styles.text}>GOLDEN CROP</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.home}>🏠</Text>
-          </TouchableOpacity>
         </View>
+        <View style={{ marginTop: 10 }}></View>
         <Text style={styles.headText}>Anthracnose</Text>
+        <View style={{ marginTop: 20 }}></View>
         <Image
           style={{ width: 150, height: 150, alignSelf: 'center' }}
           source={{
@@ -26,24 +34,19 @@ export default class Leaf6_1 extends Component {
               'https://www.planetnatural.com/wp-content/uploads/2012/12/anthracnose-1.jpg',
           }}
         />
-        <Text style={styles.bodyText}>
-          Infected plants develop dark, water soaked lesions on stems, leaves or
-          fruit. The centers of these lesions often become covered with pink,
-          gelatinous masses of spores especially during moist, warm weather.
-          Anthracnose can reduce a beautiful harvest into rotted waste in just a
-          few days. It is spread by wind, rain, insects and garden tools.
-        </Text>
+        <View style={{ marginTop: 20 }}></View>
         <Text
           style={{
             textAlign: 'left',
             marginTop: 10,
             marginLeft: 25,
             marginRight: 25,
-            fontFamily: 'Lucida Calligraphy',
+            fontSize: 20,
             fontWeight: 'bold',
           }}>
           TREATEMENT
         </Text>
+        <View style={{ marginTop: 20 }}></View>
         <Text style={styles.bodyText}>
           Neem oil spray is an organic, multi-purpose
           fungicide/insecticide/miticide that kills eggs, larvae and adult
@@ -52,29 +55,28 @@ export default class Leaf6_1 extends Component {
           preventative measure or on a 7-day schedule until existing problems
           are eliminated.
         </Text>
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#00ff00',
+    backgroundColor: '#98EDC3',
     height: '130%',
   },
   headText: {
     textAlign: 'center',
     color: 'red',
-    fontSize: 20,
+    fontSize: 23,
     fontWeight: 'bold',
-    fontFamily: 'Castellar',
   },
   bodyText: {
     marginLeft: 25,
     marginRight: 25,
     textAlign: 'justify',
-    fontFamily: 'Lucida Calligraphy',
     fontWeight: 'bold',
+    fontSize: 19,
   },
   textContainer: {
     backgroundColor: 'gold',

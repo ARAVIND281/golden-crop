@@ -5,26 +5,33 @@ import {
   StyleSheet,
   DropdownButton,
   TouchableOpacity,
-  Image,
+  ScrollView,
 } from 'react-native';
+import { Header } from 'react-native-elements';
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default class SoilTest5_1 extends Component {
   render() {
     return (
-      <View style={{ backgroundColor: '#d3d3d3' }}>
-        <View style={styles.textContainer}>
-          <Image
-            style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-            source={require('../image.png')}
+      <ScrollView style={{ backgroundColor: '#d3d3d3', flex: 1 }}>
+        <View>
+          <Header
+            centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+            rightComponent={<Text style={{
+              fontSize: RFValue(30),
+              fontWeight: 'bold',
+            }}
+              onPress={() => {
+                this.props.navigation.navigate('HomeScreen');
+              }}>🏠</Text>}
+            leftComponent={<Image
+              style={{ height: 50, width: 50 }}
+              source={require('../image.png')}
+            />}
+            backgroundColor="gold"
           />
-          <Text style={styles.text}>GOLDEN CROP</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.home}>🏠</Text>
-          </TouchableOpacity>
         </View>
+        <View style={{ marginTop: 20 }} />
         <Text
           style={{
             textAlign: 'center',
@@ -34,6 +41,7 @@ export default class SoilTest5_1 extends Component {
           }}>
           Test Result
         </Text>
+        <View style={{ marginTop: 20 }} />
         <Image
           style={{ width: 150, height: 150, alignSelf: 'center' }}
           source={{
@@ -41,19 +49,22 @@ export default class SoilTest5_1 extends Component {
               'https://www.best4hedging.co.uk/blog/wp-content/uploads/2019/11/chalky-soil.jpg',
           }}
         />
-        <Text style={{ textAlign: 'center' }}>Your soil is Chalky Soil</Text>
+        <View style={{ marginTop: 20 }} />
+        <Text style={{ textAlign: 'center', fontSize: 18, fontWeight: 'bold' }}>Your soil is Chalky Soil</Text>
+        <View style={{ marginTop: 20 }} />
         <Text
           style={{
             marginLeft: 25,
             marginRight: 25,
             textAlign: 'justify',
+            fontSize: 18,
           }}>
           The soil is alkaline in nature which sometimes leads to stunted growth
           and yellowish leaves – this can be resolved by using appropriate
           fertilizers and balancing the pH. Adding humus is recommended to
           improve water retention and workability.
         </Text>
-      </View>
+      </ScrollView>
     );
   }
 }

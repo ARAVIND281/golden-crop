@@ -5,8 +5,10 @@ import {
   StyleSheet,
   DropdownButton,
   TouchableOpacity,
-  Image,
+  Image,ScrollView
 } from 'react-native';
+import { Header } from 'react-native-elements';
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default class SoilTest1 extends Component {
   changeScreen1 = () => {
@@ -19,21 +21,25 @@ export default class SoilTest1 extends Component {
 
   render() {
     return (
-      <View style={{ backgroundColor: '#d3d3d3' }}>
-        <View style={styles.textContainer}>
-          <Image
-            style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-            source={require('../image.png')}
-          />
-          <Text style={styles.text}>GOLDEN CROP</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.home}>🏠</Text>
-          </TouchableOpacity>
-        </View>
+      <ScrollView style={{ backgroundColor: '#d3d3d3', flex: 1 }}>
         <View>
+          <Header
+            centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+            rightComponent={<Text style={{
+              fontSize: RFValue(30),
+              fontWeight: 'bold',
+            }}
+              onPress={() => {
+                this.props.navigation.navigate('HomeScreen');
+              }}>🏠</Text>}
+            leftComponent={<Image
+              style={{ height: 50, width: 50 }}
+              source={require('../image.png')}
+            />}
+            backgroundColor="gold"
+          />
+        </View>
+        <View style={{ marginTop: 10 }}>
           <Text
             style={{
               textAlign: 'center',
@@ -43,37 +49,38 @@ export default class SoilTest1 extends Component {
             }}>
             Test 1
           </Text>
-
-          <Text
-            style={{ marginLeft: 25, marginRight: 25, textAlign: 'justify' }}>
-            Add a handful of soil to a transparent container, add water, shake
-            well and then leave to settle for 12 hours. Does your soil leave
-            cloudy water with a layer of particles at the bottom. Does your soil
-            feel lumpy and sticky when wet and rock hard when dry. Is your soil
-            poor at draining and has few air spaces.
-          </Text>
-
-          <Text style={{ textAlign: 'center' }}>(or)</Text>
-          <Text style={{ textAlign: 'center' }}>
-            👇Your soil look like this👇
-          </Text>
-          <Image
-            style={{ width: 150, height: 150, alignSelf: 'center' }}
-            source={{
-              uri:
-                'https://cdn1.byjus.com/wp-content/uploads/2018/11/Types-of-Soil-clay.png',
-            }}
-          />
-          <form>
-            <TouchableOpacity style={styles.yes} onPress={this.changeScreen2}>
-              <Text style={styles.nextText}>YES</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.no} onPress={this.changeScreen1}>
-              <Text style={styles.nextText}>NO</Text>
-            </TouchableOpacity>
-          </form>
         </View>
-      </View>
+        <View style={{ marginTop: 20 }}></View>
+        <Text
+          style={{ marginLeft: 25, marginRight: 25, textAlign: 'justify', fontSize: 18 }}>
+          Add a handful of soil to a transparent container, add water, shake
+          well and then leave to settle for 12 hours. Does your soil leave
+          cloudy water with a layer of particles at the bottom. Does your soil
+          feel lumpy and sticky when wet and rock hard when dry. Is your soil
+          poor at draining and has few air spaces.
+          </Text>
+        <View style={{ marginTop: 15 }}></View>
+        <Text style={{ textAlign: 'center', fontSize: 18 }}>(or)</Text>
+        <View style={{ marginTop: 15 }}></View>
+        <Text style={{ textAlign: 'center', fontSize: 18 }}>
+          👇Your soil look like this👇
+          </Text>
+        <Image
+          style={{ width: 150, height: 150, alignSelf: 'center' }}
+          source={{
+            uri:
+              'https://cdn1.byjus.com/wp-content/uploads/2018/11/Types-of-Soil-clay.png',
+          }}
+        />
+        <View style={{ marginTop: 50 }}>
+          <TouchableOpacity style={styles.yes} onPress={this.changeScreen2}>
+            <Text style={styles.nextText}>YES</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.no} onPress={this.changeScreen1}>
+            <Text style={styles.nextText}>NO</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -85,8 +92,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: 80,
     alignSelf: 'center',
-    marginLeft: 80,
-    marginTop: 15,
+    marginLeft: -80,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 10.32,
+    elevation: 16,
   },
   no: {
     backgroundColor: 'red',
@@ -95,7 +109,15 @@ const styles = StyleSheet.create({
     width: 80,
     alignSelf: 'center',
     marginTop: -40,
-    marginLeft: 175,
+    marginLeft: 120,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 10.32,
+    elevation: 16,
   },
   nextText: {
     textAlign: 'center',

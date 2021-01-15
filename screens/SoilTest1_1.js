@@ -5,26 +5,33 @@ import {
   StyleSheet,
   DropdownButton,
   TouchableOpacity,
-  Image,
+  Image, ScrollView
 } from 'react-native';
+import { Header } from 'react-native-elements';
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default class SoilTest1_1 extends Component {
   render() {
     return (
-      <View style={{ backgroundColor: '#d3d3d3' }}>
-        <View style={styles.textContainer}>
-          <Image
-            style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-            source={require('../image.png')}
+      <ScrollView style={{ backgroundColor: '#d3d3d3', flex: 1 }}>
+        <View>
+          <Header
+            centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+            rightComponent={<Text style={{
+              fontSize: RFValue(30),
+              fontWeight: 'bold',
+            }}
+              onPress={() => {
+                this.props.navigation.navigate('HomeScreen');
+              }}>🏠</Text>}
+            leftComponent={<Image
+              style={{ height: 50, width: 50 }}
+              source={require('../image.png')}
+            />}
+            backgroundColor="gold"
           />
-          <Text style={styles.text}>GOLDEN CROP</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.home}>🏠</Text>
-          </TouchableOpacity>
         </View>
+        <View style={{ marginTop: 20 }} />
         <Text
           style={{
             textAlign: 'center',
@@ -34,6 +41,7 @@ export default class SoilTest1_1 extends Component {
           }}>
           Test Result
         </Text>
+        <View style={{ marginTop: 20 }} />
         <Image
           style={{ width: 150, height: 150, alignSelf: 'center' }}
           source={{
@@ -41,17 +49,20 @@ export default class SoilTest1_1 extends Component {
               'https://cdn1.byjus.com/wp-content/uploads/2018/11/Types-of-Soil-clay.png',
           }}
         />
-        <Text style={{ textAlign: 'center' }}>Your Soil is Clay Soil</Text>
+        <View style={{ marginTop: 20 }} />
+        <Text style={{ textAlign: 'center', fontSize: 18, fontWeight: 'bold' }}>Your Soil is Clay Soil</Text>
+        <View style={{ marginTop: 20 }} />
         <Text
           style={{
             marginLeft: 25,
             marginRight: 25,
             textAlign: 'justify',
+            fontSize: 18
           }}>
           If the drainage for the soil is enhanced, then plants will develop and
           grow well as clay soil can be rich in nutrients.
         </Text>
-      </View>
+      </ScrollView>
     );
   }
 }

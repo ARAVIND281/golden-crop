@@ -1,14 +1,7 @@
 {
   "expo": {
-    "name": "golden-crop-final",
-    "slug": "snack-39d05dd1-0410-4bff-92e4-25d72bab47b8",
-    "privacy": "public",
-    "sdkVersion": "36.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "name": "golden crop",
+    "slug": "golden-crop",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -26,6 +19,15 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "GOLDEN CROP Completed This has been submit."
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.aravind.s.goldencrop"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }

@@ -4,33 +4,31 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Header,
   Image,
   Linking,
 } from 'react-native';
+import { Header } from 'react-native-elements';
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default class HomeScreen extends Component {
   render() {
     return (
-      <View style={{ backgroundColor: '#cbe3ee' }}>
-        <View style={styles.textContainer}>
-          <Image
-            style={{ height: 50, width: 50, marginTop: 10, marginLeft: 10 }}
-            source={require('../image.png')}
-          />
-          <Text style={styles.text}>GOLDEN CROP</Text>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('HomeScreen');
-            }}>
-            <Text style={styles.home}>🏠</Text>
-          </TouchableOpacity>
-          <Image
-            style={{ height: 70, width: 300, marginTop: -75, alignSelf: 'center' }}
-            source={{
-              uri:
-                'https://78.media.tumblr.com/63273c0fd6d464bb267d638e584ec8a7/tumblr_p1wli7n7021vpf6ddo1_500.gif',
+      <View style={{ backgroundColor: '#cbe3ee', flex: 1 }}>
+        <View>
+          <Header
+            centerComponent={{ text: 'GOLDEN CROP', style: { color: '#028910', fontSize: RFValue(20), fontWeight: "bold", } }}
+            rightComponent={<Text style={{
+              fontSize: RFValue(30),
+              fontWeight: 'bold',
             }}
+              onPress={() => {
+                this.props.navigation.navigate('HomeScreen');
+              }}>🏠</Text>}
+            leftComponent={<Image
+              style={{ height: 50, width: 50 }}
+              source={require('../image.png')}
+            />}
+            backgroundColor="gold"
           />
         </View>
         <View>
